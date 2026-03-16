@@ -3,6 +3,321 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' style='background:%232a4a7f'><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia' font-size='52' fill='white'>DP</text></svg>" />
+	<title>Dean Alexander Parker — Finance PhD Candidate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #1a1a1a;
+      --muted:  #5a5a5a;
+      --rule:   #d4cfc8;
+      --accent: #2a4a7f;
+      --cream:  #faf8f4;
+      --tag-bg: #eef1f7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── Top Header ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--rule);
+      padding: 0 48px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-identity {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .avatar-ring {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid var(--rule);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .name {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .title-label {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+      gap: 2px;
+      margin-left: auto;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 400;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    nav a:hover, nav a.active {
+      background: var(--tag-bg);
+      color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+
+    .contact-item {
+      font-size: 0.80rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .contact-item a { color: var(--accent); text-decoration: none; }
+    .contact-item a:hover { text-decoration: underline; }
+
+    .cv-btn {
+      display: inline-block;
+      padding: 7px 15px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.80rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .cv-btn:hover { opacity: 0.85; }
+
+    /* ── Main content ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 80px;
+    }
+
+    section { margin-bottom: 68px; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* About */
+    .intro-name {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .intro-name em { font-style: italic; color: var(--accent); }
+
+    .bio { font-size: 1.01rem; color: #3a3a3a; max-width: 620px; }
+    .bio p + p { margin-top: 14px; }
+
+    .fields {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .field-tag {
+      background: var(--tag-bg);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Papers */
+    .paper-list { display: flex; flex-direction: column; gap: 32px; }
+
+    .paper {
+      padding-left: 20px;
+      border-left: 2px solid var(--rule);
+      transition: border-color 0.2s;
+    }
+    .paper:hover { border-left-color: var(--accent); }
+
+    .paper-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.12rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+
+    .paper-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .paper-status {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 500;
+      padding: 2px 9px;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+    }
+    .status-pub   { background: #e6f4ee; color: #1a7a45; }
+    .status-rr    { background: #fff4e0; color: #9a5800; }
+    .status-wp    { background: var(--tag-bg); color: var(--accent); }
+    .status-prog  { background: #f4e6f0; color: #7a1a5a; }
+    .status-pol   { background: #e6eef4; color: #1a4a7a; }
+
+    .paper-links { margin-top: 8px; display: flex; gap: 12px; }
+    .paper-links a {
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .paper-links a:hover { text-decoration: underline; }
+
+    /* Experience */
+    .exp-list { display: flex; flex-direction: column; gap: 28px; }
+
+    .exp-item { display: flex; gap: 20px; }
+
+    .exp-year {
+      font-size: 0.78rem;
+      color: var(--muted);
+      min-width: 90px;
+      padding-top: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .exp-body { flex: 1; }
+
+    .exp-role {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .exp-org {
+      font-size: 0.87rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .exp-bullets li {
+      font-size: 0.87rem;
+      color: var(--muted);
+      padding-left: 14px;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--rule);
+    }
+
+    /* Education */
+    .edu-list { display: flex; flex-direction: column; gap: 24px; }
+    .edu-item { display: flex; gap: 20px; }
+    .edu-year { font-size: 0.78rem; color: var(--muted); min-width: 90px; padding-top: 3px; }
+    .edu-body { flex: 1; }
+    .edu-degree { font-weight: 500; font-size: 0.95rem; }
+    .edu-school { font-size: 0.87rem; color: var(--accent); }
+    .edu-detail { font-size: 0.84rem; color: var(--muted); margin-top: 2px; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 28px 0 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 800px) {
+      header {
+        height: auto;
+        padding: 14px 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      nav { margin-left: 0; width: 100%; flex-wrap: wrap; }
+      .header-actions { margin-left: 0; }
+      main { padding: 40px 24px; }
+      .intro-name { font-size: 2rem; }
+    }
+  </style>
 </head>
 <body>
 <img src="wedding.jpg" alt="Us" width="900" height="600"/>
