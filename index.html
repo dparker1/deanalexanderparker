@@ -29,107 +29,126 @@
       font-size: 16px;
     }
 
-    /* ── Layout ── */
-    .page { display: flex; min-height: 100vh; }
-
-    aside {
+    /* ── Top Header ── */
+    header {
       position: sticky;
       top: 0;
-      height: 100vh;
-      width: 280px;
-      min-width: 280px;
-      border-right: 1px solid var(--rule);
-      padding: 56px 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
+      z-index: 100;
       background: #fff;
-      overflow-y: auto;
+      border-bottom: 1px solid var(--rule);
+      padding: 0 48px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
 
-    main {
-      flex: 1;
-      padding: 72px 80px;
-      max-width: 860px;
-    }
-
-    /* ── Sidebar ── */
-    .name {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.55rem;
-      font-weight: 500;
-      line-height: 1.2;
-      color: var(--ink);
-    }
-
-    .title-label {
-      font-size: 0.78rem;
-      font-weight: 400;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-top: 6px;
+    .header-identity {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
     }
 
     .avatar-ring {
-      width: 88px;
-      height: 88px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      background: var(--tag-bg);
       border: 2px solid var(--rule);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'EB Garamond', serif;
-      font-size: 2rem;
-      color: var(--accent);
+      overflow: hidden;
+      flex-shrink: 0;
     }
 
-    nav { display: flex; flex-direction: column; gap: 4px; }
+    .avatar-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .name {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .title-label {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+      gap: 2px;
+      margin-left: auto;
+    }
 
     nav a {
       text-decoration: none;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       font-weight: 400;
       padding: 6px 10px;
       border-radius: 4px;
       transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
     }
     nav a:hover, nav a.active {
       background: var(--tag-bg);
       color: var(--accent);
     }
 
-    .contact-block { display: flex; flex-direction: column; gap: 8px; }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
 
     .contact-item {
-      font-size: 0.82rem;
+      font-size: 0.80rem;
       color: var(--muted);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      white-space: nowrap;
     }
     .contact-item a { color: var(--accent); text-decoration: none; }
     .contact-item a:hover { text-decoration: underline; }
 
     .cv-btn {
       display: inline-block;
-      margin-top: 8px;
-      padding: 9px 18px;
+      padding: 7px 15px;
       background: var(--accent);
       color: #fff;
       border-radius: 4px;
       text-decoration: none;
-      font-size: 0.83rem;
+      font-size: 0.80rem;
       font-weight: 500;
       letter-spacing: 0.03em;
       transition: opacity 0.15s;
-      width: fit-content;
+      white-space: nowrap;
     }
     .cv-btn:hover { opacity: 0.85; }
 
     /* ── Main content ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 80px;
+    }
+
     section { margin-bottom: 68px; }
 
     .section-label {
@@ -285,19 +304,15 @@
     }
 
     /* ── Mobile ── */
-    @media (max-width: 760px) {
-      .page { flex-direction: column; }
-      aside {
-        position: static;
-        width: 100%;
+    @media (max-width: 800px) {
+      header {
         height: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--rule);
-        padding: 36px 24px;
-        flex-direction: row;
+        padding: 14px 20px;
         flex-wrap: wrap;
-        gap: 24px;
+        gap: 12px;
       }
+      nav { margin-left: 0; width: 100%; flex-wrap: wrap; }
+      .header-actions { margin-left: 0; }
       main { padding: 40px 24px; }
       .intro-name { font-size: 2rem; }
     }
@@ -305,236 +320,225 @@
 </head>
 <body>
 
-<div class="page">
-
-  <!-- ── Sidebar ── -->
-  <aside>
-    <div>
-      <img src="dap.jpg" alt="Me">
+<!-- ── Top Header ── -->
+<header>
+  <div class="header-identity">
+    <div class="avatar-ring">
+      <img src="dap.jpg" alt="Dean Parker" />
     </div>
-
     <div>
       <div class="name">Dean A. Parker</div>
-      <div class="title-label">Finance PhD Candidate</div>
-      <div class="title-label" style="margin-top:2px;">NYU Stern</div>
+      <div class="title-label">Finance PhD Candidate · NYU Stern</div>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#about" class="active">About</a>
+    <a href="#research">Research</a>
+    <a href="#policy">Policy Work</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+  </nav>
+
+  <div class="header-actions">
+    <div class="contact-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      <a href="mailto:dap527@stern.nyu.edu">dap527@stern.nyu.edu</a>
+    </div>
+    <a class="cv-btn" href="Dean_Parker_CV.pdf" target="_blank">CV ↗</a>
+  </div>
+</header>
+
+<!-- ── Main ── -->
+<main>
+
+  <!-- About -->
+  <section id="about">
+    <div class="intro-name">Dean Alexander Parker</div>
+    <div class="bio">
+      <p>
+        I am a PhD candidate in Finance at the NYU Stern School of Business, expected to graduate in 2027. My research sits at the intersection of alternative asset management, climate risk, and financial intermediation.
+      </p>
+      <p>
+        My job market paper examines conflicts of interest in publicly listed private equity, asking whether private funds can fulfill the transparency obligations of public markets.
+      </p>
+      <p>
+        Prior to my PhD, I was a Senior Research Analyst at the Federal Reserve Bank of New York, where I contributed to monetary policy research and maintained the FRBNY MBS prepayment model.
+      </p>
+      <p>
+        I currently live with my beautiful wife, Peiying Yu, in Jersey City, NJ. I am originally from Toms River, NJ (the "Jersey Shore").
+      </p>
     </div>
 
-    <nav>
-      <a href="#about"       class="active">About</a>
-      <a href="#research">Research</a>
-      <a href="#policy">Policy Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-    </nav>
-
-    <div class="contact-block">
-      <div class="contact-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-        <a href="mailto:dap527@stern.nyu.edu">dap527@stern.nyu.edu</a>
-      </div>
-      <div class="contact-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        848-210-3354
-      </div>
-      <div class="contact-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-        <a href="https://github.com/deanparker" target="_blank">GitHub</a>
-      </div>
-      <a class="cv-btn" href="Dean_Parker_CV.pdf" target="_blank">CV ↗</a>
+    <div class="fields">
+      <span class="field-tag">Financial Intermediation</span>
+      <span class="field-tag">Private Equity &amp; VC</span>
+      <span class="field-tag">Real Estate Finance</span>
     </div>
-  </aside>
+  </section>
 
-  <!-- ── Main ── -->
-  <main>
+  <!-- Research -->
+  <section id="research">
+    <div class="section-label">Research</div>
 
-    <!-- About -->
-    <section id="about">
-      <div class="intro-name">Dean Alexander Parker</div>
-      <div class="bio">
-        <p>
-          I am a PhD candidate in Finance at the NYU Stern School of Business, expected to graduate in 2027. My research sits at the intersection of alternative asset management, climate risk, and financial intermediation.
-        </p>
-        <p>
-          My job market paper examines conflicts of interest in publicly listed private equity, asking whether private funds can fulfill the transparency obligations of public markets.
-        </p>
-        <p>
-          Prior to my PhD, I was a Senior Research Analyst at the Federal Reserve Bank of New York, where I contributed to monetary policy research and maintained the FRBNY MBS prepayment model.
-        </p>
-		<p>
-          I currently live with my beautiful wife, Peiying Yu, in Jersey City, NJ. I am originally from Toms River, NJ (the "Jersey Shore").
-        </p>
+    <div class="paper-list">
+
+      <!-- Dissertation / JMP -->
+      <div class="paper">
+        <div class="paper-title">Can Private Be the New Public? Conflicts of Interest in Publicly Listed Private Equity</div>
+        <div class="paper-meta">Solo-authored · 2026</div>
+        <div class="paper-meta">Presented at Columbia Private Equity Conference, March 2026</div>
+        <span class="paper-status status-prog">Job Market Paper</span>
+        <div class="paper-links">
+          <a href="ConflictsPLPE_Parker_03132026.pdf" target="_blank">Github ↗</a>
+        </div>
       </div>
 
-      <div class="fields">
-        <span class="field-tag">Financial Intermediation</span>
-        <span class="field-tag">Private Equity &amp; VC</span>
-        <span class="field-tag">Real Estate Finance</span>
+      <!-- JF R&R -->
+      <div class="paper">
+        <div class="paper-title">Tyranny of the Personal Network: The Limits of Arm's Length Fundraising in Venture Capital</div>
+        <div class="paper-meta">With Sabrina Howell and Ting Xu · 2025</div>
+        <span class="paper-status status-rr">R&amp;R — Journal of Finance</span>
+        <div class="paper-links">
+          <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4990883" target="_blank">SSRN ↗</a>
+        </div>
       </div>
-    </section>
 
-    <!-- Research -->
-    <section id="research">
-      <div class="section-label">Research</div>
-
-      <div class="paper-list">
-
-        <!-- Dissertation / JMP -->
-        <div class="paper">
-          <div class="paper-title">Can Private Be the New Public? Conflicts of Interest in Publicly Listed Private Equity</div>
-		  <div class="paper-meta">Solo-authored · 2026</div>
-		  <div class="paper-meta">Presented at Columbia Private Equity Conference, March 2026</div>
-		  <span class="paper-status status-prog">Job Market Paper</span>
-		  <div class="paper-links">
-            <a href="ConflictsPLPE_Parker_03132026.pdf" target="_blank">Github ↗</a>
-          </div>
+      <!-- Engle paper -->
+      <div class="paper">
+        <div class="paper-title">Mirror, Mirror, on The Wall, Who's the Greenest of Us All?</div>
+        <div class="paper-meta">With Robert Engle · 2025</div>
+        <span class="paper-status status-wp">Working Paper</span>
+        <div class="paper-links">
+          <a href="https://ssrn.com/abstract=5331805" target="_blank">SSRN ↗</a>
+          <a href="https://www.bloomberg.com/professional/insights/webinar/bloomberg-quant-bbq-seminar-series-october-2024/" target="_blank">Bloomberg Quant</a>
         </div>
-
-        <!-- JF R&R -->
-        <div class="paper">
-          <div class="paper-title">Tyranny of the Personal Network: The Limits of Arm's Length Fundraising in Venture Capital</div>
-          <div class="paper-meta">With Sabrina Howell and Ting Xu · 2025</div>
-          <span class="paper-status status-rr">R&amp;R — Journal of Finance</span>
-          <div class="paper-links">
-            <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4990883" target="_blank">SSRN ↗</a>
-          </div>
-        </div>
-
-        <!-- Engle paper -->
-        <div class="paper">
-          <div class="paper-title">Mirror, Mirror, on The Wall, Who's the Greenest of Us All?</div>
-          <div class="paper-meta">With Robert Engle · 2025</div>
-          <span class="paper-status status-wp">Working Paper</span>
-          <div class="paper-links">
-            <a href="https://ssrn.com/abstract=5331805" target="_blank">SSRN ↗</a>
-            <a href="https://www.bloomberg.com/professional/insights/webinar/bloomberg-quant-bbq-seminar-series-october-2024/" target="_blank">Bloomberg Quant</a>
-          </div>
-        </div>
-
-        <!-- Disaster Aid -->
-        <div class="paper">
-          <div class="paper-title">Does Disaster Aid Cause Moral Hazard in the Housing Market? Evidence from Climate Adaptation and Transaction Prices</div>
-          <div class="paper-meta">With Shan Ge, Benjamin Collier, and Ryan Lewis · 2025</div>
-          <span class="paper-status status-prog">Draft in Progress</span>
-        </div>
-
-        <!-- RFS Publication -->
-        <div class="paper">
-          <div class="paper-title">Monetary Policy, Business Liquidity and Survival: Evidence from the Refinancing Channel</div>
-          <div class="paper-meta">With Rodney Ramcharan and Haoyang Liu · 2023</div>
-          <span class="paper-status status-pub">Published — Review of Financial Studies</span>
-        </div>
-
       </div>
-    </section>
 
-    <!-- Policy Work -->
-    <section id="policy">
-      <div class="section-label">Policy Work &amp; Other Writing</div>
-
-      <div class="paper-list">
-
-        <div class="paper">
-          <div class="paper-title">VC Funds and Regulation D's Rule 506(c): Did Permitting General Solicitation Open the Door for Emerging and Underrepresented Managers?</div>
-          <div class="paper-meta">With Sabrina Howell · 2024</div>
-          <span class="paper-status status-pol">SEC Policy Report</span>
-        </div>
-
-        <div class="paper">
-          <div class="paper-title">The Term Spread as a Predictor of Financial Instability</div>
-          <div class="paper-meta">With Moritz Schularick · 2021</div>
-          <span class="paper-status status-pol">FRBNY Liberty Street Economics</span>
-        </div>
-
-        <div class="paper">
-          <div class="paper-title">The Housing Boom and the Decline in Mortgage Rates</div>
-          <div class="paper-meta">With Haoyang Liu, David Lucca, and Gabriela Rays-Wahba · 2021</div>
-          <span class="paper-status status-pol">FRBNY Liberty Street Economics · WSJ</span>
-        </div>
-
-        <div class="paper">
-          <div class="paper-title">Do People View Housing as a Good Investment and Why?</div>
-          <div class="paper-meta">With Andrew Haughwout, Haoyang Liu, and Xiaohan Zhang · 2021</div>
-          <span class="paper-status status-pol">FRBNY Liberty Street Economics · Reuters</span>
-        </div>
-
+      <!-- Disaster Aid -->
+      <div class="paper">
+        <div class="paper-title">Does Disaster Aid Cause Moral Hazard in the Housing Market? Evidence from Climate Adaptation and Transaction Prices</div>
+        <div class="paper-meta">With Shan Ge, Benjamin Collier, and Ryan Lewis · 2025</div>
+        <span class="paper-status status-prog">Draft in Progress</span>
       </div>
-    </section>
 
-    <!-- Experience -->
-    <section id="experience">
-      <div class="section-label">Professional Experience</div>
-
-      <div class="exp-list">
-
-        <div class="exp-item">
-          <div class="exp-year">2026<br>Incoming</div>
-          <div class="exp-body">
-            <div class="exp-role">Quantitative Solutions Research Associate</div>
-            <div class="exp-org">PGIM</div>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-year">2020–2022</div>
-          <div class="exp-body">
-            <div class="exp-role">Senior Research Analyst, Capital Markets Function</div>
-            <div class="exp-org">Federal Reserve Bank of New York</div>
-            <ul class="exp-bullets">
-              <li>Conducted research with economists for monetary policy reports, academic journals, and the Liberty Street Economics blog.</li>
-              <li>Maintained and improved the FRBNY MBS prepayment model in Stata and Python.</li>
-              <li>Conducted exploratory data analysis and visualization using local projection methods.</li>
-            </ul>
-          </div>
-        </div>
-		
-		<div class="exp-item">
-          <div class="exp-year">2019-2020, 2024–2025</div>
-          <div class="exp-body">
-            <div class="exp-role">Quantitative Research Intern</div>
-            <div class="exp-org">AlphaQuest</div>
-            <ul class="exp-bullets">
-              <li>Researched FX risk reversal and butterfly options spreads as predictors of future returns and return skewness.</li>
-              <li>Developed decision tree, gradient boosting, and shrinkage estimators with custom selection criteria in Python, Cython, and C++.</li>
-              <li>Contributed speed and logic improvements to the backtesting engine in C#.</li>
-            </ul>
-          </div>
-        </div>
-
+      <!-- RFS Publication -->
+      <div class="paper">
+        <div class="paper-title">Monetary Policy, Business Liquidity and Survival: Evidence from the Refinancing Channel</div>
+        <div class="paper-meta">With Rodney Ramcharan and Haoyang Liu · 2023</div>
+        <span class="paper-status status-pub">Published — Review of Financial Studies</span>
       </div>
-    </section>
 
-    <!-- Education -->
-    <section id="education">
-      <div class="section-label">Education</div>
+    </div>
+  </section>
 
-      <div class="edu-list">
+  <!-- Policy Work -->
+  <section id="policy">
+    <div class="section-label">Policy Work &amp; Other Writing</div>
 
-        <div class="edu-item">
-          <div class="edu-year">2022–<br>Present</div>
-          <div class="edu-body">
-            <div class="edu-degree">PhD Candidate in Finance</div>
-            <div class="edu-school">New York University, Stern School of Business</div>
-          </div>
-        </div>
+    <div class="paper-list">
 
-        <div class="edu-item">
-          <div class="edu-year">2020</div>
-          <div class="edu-body">
-            <div class="edu-degree">BS in Operations Research: Financial Engineering</div>
-            <div class="edu-school">Columbia University</div>
-            <div class="edu-detail">Minor in Applied Mathematics · Cum Laude · Tau Beta Pi</div>
-          </div>
-        </div>
-
+      <div class="paper">
+        <div class="paper-title">VC Funds and Regulation D's Rule 506(c): Did Permitting General Solicitation Open the Door for Emerging and Underrepresented Managers?</div>
+        <div class="paper-meta">With Sabrina Howell · 2024</div>
+        <span class="paper-status status-pol">SEC Policy Report</span>
       </div>
-    </section>
 
-    <footer>
-      <p>Dean A. Parker · NYU Stern School of Business · Updated March 2026</p>
-    </footer>
+      <div class="paper">
+        <div class="paper-title">The Term Spread as a Predictor of Financial Instability</div>
+        <div class="paper-meta">With Moritz Schularick · 2021</div>
+        <span class="paper-status status-pol">FRBNY Liberty Street Economics</span>
+      </div>
 
-  </main>
-</div>
+      <div class="paper">
+        <div class="paper-title">The Housing Boom and the Decline in Mortgage Rates</div>
+        <div class="paper-meta">With Haoyang Liu, David Lucca, and Gabriela Rays-Wahba · 2021</div>
+        <span class="paper-status status-pol">FRBNY Liberty Street Economics · WSJ</span>
+      </div>
+
+      <div class="paper">
+        <div class="paper-title">Do People View Housing as a Good Investment and Why?</div>
+        <div class="paper-meta">With Andrew Haughwout, Haoyang Liu, and Xiaohan Zhang · 2021</div>
+        <span class="paper-status status-pol">FRBNY Liberty Street Economics · Reuters</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="section-label">Professional Experience</div>
+
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-year">2026<br>Incoming</div>
+        <div class="exp-body">
+          <div class="exp-role">Quantitative Solutions Research Associate</div>
+          <div class="exp-org">PGIM</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-year">2020–2022</div>
+        <div class="exp-body">
+          <div class="exp-role">Senior Research Analyst, Capital Markets Function</div>
+          <div class="exp-org">Federal Reserve Bank of New York</div>
+          <ul class="exp-bullets">
+            <li>Conducted research with economists for monetary policy reports, academic journals, and the Liberty Street Economics blog.</li>
+            <li>Maintained and improved the FRBNY MBS prepayment model in Stata and Python.</li>
+            <li>Conducted exploratory data analysis and visualization using local projection methods.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-year">2019–2020, 2024–2025</div>
+        <div class="exp-body">
+          <div class="exp-role">Quantitative Research Intern</div>
+          <div class="exp-org">AlphaQuest</div>
+          <ul class="exp-bullets">
+            <li>Researched FX risk reversal and butterfly options spreads as predictors of future returns and return skewness.</li>
+            <li>Developed decision tree, gradient boosting, and shrinkage estimators with custom selection criteria in Python, Cython, and C++.</li>
+            <li>Contributed speed and logic improvements to the backtesting engine in C#.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="section-label">Education</div>
+
+    <div class="edu-list">
+
+      <div class="edu-item">
+        <div class="edu-year">2022–<br>Present</div>
+        <div class="edu-body">
+          <div class="edu-degree">PhD Candidate in Finance</div>
+          <div class="edu-school">New York University, Stern School of Business</div>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-year">2020</div>
+        <div class="edu-body">
+          <div class="edu-degree">BS in Operations Research: Financial Engineering</div>
+          <div class="edu-school">Columbia University</div>
+          <div class="edu-detail">Minor in Applied Mathematics · Cum Laude · Tau Beta Pi</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>Dean A. Parker · NYU Stern School of Business · Updated March 2026</p>
+  </footer>
+
+</main>
 
 <script>
   const sections = document.querySelectorAll('section[id]');
